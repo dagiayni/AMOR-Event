@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: 'Playfair Display', serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+            border: 1px solid #d4af37;
+            background-color: #111111;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            font-size: 48px;
+            font-weight: bold;
+            color: #d4af37;
+            letter-spacing: 10px;
+        }
+
+        .content {
+            line-height: 1.6;
+            font-size: 16px;
+            color: #e5e5e5;
+        }
+
+        .content p {
+            color: #e5e5e5;
+            margin-bottom: 20px;
+        }
+
+        .gold-text {
+            color: #d4af37;
+            font-weight: bold;
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            font-size: 12px;
+            color: #888;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #d4af37, #f1e5ac);
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 2px;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">AMOR</div>
+            <div style="color: #aaaaaa; letter-spacing: 2px; margin-top: 10px;">AN EXCLUSIVE VALENTINE'S SOIRÉE</div>
+        </div>
+        <div class="content" style="color: #e5e5e5;">
+            <p style="color: #e5e5e5;">Dear <span class="gold-text">{{name}}</span>,</p>
+            <p style="color: #e5e5e5;">Thank you for expressing interest in joining us for <strong
+                    style="color: #ffffff;">AMOR</strong> – an evening of unparalleled luxury and romance.</p>
+            <p style="color: #e5e5e5;">Your registration for the <span class="gold-text">{{package}}</span> has been
+                received. Our team will review your details and contact you shortly to finalize your reservation.</p>
+            <p style="color: #e5e5e5;">We look forward to hosting you for this unforgettable experience.</p>
+            <p style="text-align: center;">
+                <a href="#" class="btn">View Event Details</a>
+            </p>
+        </div>
+        <div class="footer">
+            &copy; 2026 AMOR EVENT. ALL RIGHTS RESERVED.<br>
+            DISCRETION & LUXURY ENSURED.
+        </div>
+    </div>
+</body>
+
+</html>

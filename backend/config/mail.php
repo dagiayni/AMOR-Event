@@ -1,13 +1,13 @@
 <?php
 // SMTP Configuration for AMOR Event
 return [
-    'host' => 'smtp.gmail.com',
+    'host' => 'mail.hotelsowirad.com',
     'auth' => true,
-    'username' => 'dagimaynadispro@gmail.com',
-    'password' => 'kmct elhe rgkv olsj',
-    'secure' => 'tls', // 'tls' or 'ssl'
-    'port' => 587,
-    'from_email' => 'dagimaynadispro@gmail.com',
+    'username' => 'marketing@hotelsowirad.com',
+    'password' => 'Marketing!2#',
+    'secure' => 'ssl', // Port 465 usually requires 'ssl' (Implicit SSL)
+    'port' => 465,
+    'from_email' => 'marketing@hotelsowirad.com',
     'from_name' => 'AMOR Event',
-    'admin_email' => 'dagimaynadispro@gmail.com'
+    'admin_email' => 'marketing@hotelsowirad.com'
 ];

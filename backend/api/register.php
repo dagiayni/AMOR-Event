@@ -1,7 +1,16 @@
 <?php
-header("Access-Control-Allow-Origin: *");
+// Allow any subdomain of hotelsowirad.com
+if (isset($_SERVER['HTTP_ORIGIN'])) {
+    $origin = $_SERVER['HTTP_ORIGIN'];
+    // Allow production domain and localhost for development
+    if (preg_match('/https?:\/\/(.*?\.)?hotelsowirad\.com$/', $origin) || 
+        preg_match('/https?:\/\/localhost(:\d+)?$/', $origin) ||
+        preg_match('/https?:\/\/127\.0\.0\.1(:\d+)?$/', $origin)) {
+        header("Access-Control-Allow-Origin: $origin");
+    }
+}
 header("Access-Control-Allow-Methods: POST, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Content-Type: application/json");
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
@@ -61,40 +70,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     try {
-        // --- 1. Send Email to Client ---
-        $clientMail = new PHPMailer(true);
-        $clientMail->isSMTP();
-        $clientMail->Host       = $mailConfig['host'];
-        $clientMail->SMTPAuth   = $mailConfig['auth'];
-        $clientMail->Username   = $mailConfig['username'];
-        $clientMail->Password   = $mailConfig['password'];
-        $clientMail->SMTPSecure = $mailConfig['secure'];
-        $clientMail->Port       = $mailConfig['port'];
+        // --- Setup Single Mailer Instance ---
+        $mail = new PHPMailer(true);
+        $mail->isSMTP();
+        $mail->Host       = $mailConfig['host'];
+        $mail->SMTPAuth   = $mailConfig['auth'];
+        $mail->Username   = $mailConfig['username'];
+        $mail->Password   = $mailConfig['password'];
+        $mail->SMTPSecure = $mailConfig['secure'];
+        $mail->Port       = $mailConfig['port'];
+        $mail->Timeout    = 20; 
+        $mail->CharSet    = 'UTF-8';
 
-        $clientMail->setFrom($mailConfig['from_email'], $mailConfig['from_name']);
-        $clientMail->addAddress($email, $name);
-        $clientMail->isHTML(true);
-        $clientMail->Subject = 'Confirmation: Your AMOR Event Registration';
+        // --- 1. Send Email to Client ---
+        $mail->setFrom($mailConfig['from_email'], $mailConfig['from_name']);
+        $mail->addAddress($email, $name);
+        $mail->isHTML(true);
+        $mail->Subject = 'Confirmation: Your AMOR Event Registration';
         
         $clientTemplate = file_get_contents('../emails/verification.html');
         $clientTemplate = str_replace(['{{name}}', '{{package}}'], [$name, $package], $clientTemplate);
-        $clientMail->Body = $clientTemplate;
-        $clientMail->send();
+        $mail->Body = $clientTemplate;
+        $mail->send();
 
-        // --- 2. Send Email to Admin ---
-        $adminMail = new PHPMailer(true);
-        $adminMail->isSMTP();
-        $adminMail->Host       = $mailConfig['host'];
-        $adminMail->SMTPAuth   = $mailConfig['auth'];
-        $adminMail->Username   = $mailConfig['username'];
-        $adminMail->Password   = $mailConfig['password'];
-        $adminMail->SMTPSecure = $mailConfig['secure'];
-        $adminMail->Port       = $mailConfig['port'];
-
-        $adminMail->setFrom($mailConfig['from_email'], $mailConfig['from_name']);
-        $adminMail->addAddress($mailConfig['admin_email'], 'Admin');
-        $adminMail->isHTML(true);
-        $adminMail->Subject = 'New AMOR Registration: ' . $name;
+        // --- 2. Send Email to Admin (REUSING THE SAME CONNECTION) ---
+        $mail->clearAddresses();
+        $mail->clearAttachments();
+        
+        $mail->addAddress($mailConfig['admin_email'], 'Admin');
+        $mail->Subject = 'New AMOR Registration: ' . $name;
         
         $adminTemplate = file_get_contents('../emails/admin_notification.html');
         $adminTemplate = str_replace(
@@ -102,17 +106,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             [$name, $email, $phone, $package, nl2br($message)],
             $adminTemplate
         );
-        $adminMail->Body = $adminTemplate;
+        $mail->Body = $adminTemplate;
         
         if ($attachmentPath) {
-            $adminMail->addAttachment($attachmentPath);
+            $mail->addAttachment($attachmentPath);
         }
         
-        $adminMail->send();
+        $mail->send();
 
         $response = ["status" => "success", "message" => "Registration successful! Check your email."];
     } catch (Exception $e) {
-        $response = ["status" => "error", "message" => "Email failed: {$clientMail->ErrorInfo}"];
+        $response = ["status" => "error", "message" => "Email failed: {$mail->ErrorInfo}"];
     }
 }
 

@@ -65,7 +65,8 @@ const RegistrationForm = ({ isOpen, onClose, selectedPackage }: RegistrationForm
                 data.append("attachment", file);
             }
 
-            const response = await fetch("http://localhost:8000/backend/api/register.php", {
+            const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api/register.php";
+            const response = await fetch(apiUrl, {
                 method: "POST",
                 body: data,
             });

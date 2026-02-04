@@ -61,7 +61,7 @@ export default function Home() {
             <a href="#" className="hover:text-gold transition-colors">Terms of Service</a>
           </div>
 
-          <p className="text-champagne/20 text-[10px] tracking-widest uppercase">&copy; 2026 SOWIRAD HOTEL & SPA. ALL RIGHTS RESERVED.</p>
+          <p className="text-champagne/20 text-[10px] tracking-widest uppercase">&copy; 2026 SOWIRAD HOTEL. ALL RIGHTS RESERVED.</p>
         </div>
       </footer>
     </main>

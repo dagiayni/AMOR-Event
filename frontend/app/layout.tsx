@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   title: "AMOR | An Exclusive Valentine's Soirée",
   description: "Experience the pinnacle of luxury this Valentine's Day at AMOR. Join us for an evening of elegance, romance, and fine dining.",
   keywords: "Valentine's Day, Luxury Event, AMOR, Fine Dining, Romantic Event",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 import FloatingContact from "@/components/FloatingContact";
@@ -26,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body
         className={`${inter.variable} ${playfair.variable} antialiased selection:bg-gold selection:text-black`}
       >

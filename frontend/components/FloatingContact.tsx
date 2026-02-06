@@ -13,7 +13,7 @@ const FloatingContact = () => {
         >
             {/* Phone Call Button */}
             <motion.a
-                href="tel:+251911223344"
+                href="tel:+251989681490"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 className="flex items-center justify-center w-14 h-14 rounded-full bg-gold text-black shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:shadow-[0_0_30px_rgba(212,175,55,0.6)] transition-shadow border border-white/20 group relative"

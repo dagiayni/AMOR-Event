@@ -12,10 +12,10 @@ interface RegistrationFormProps {
 }
 
 const packagePrices: Record<string, string> = {
-    "King Amor": "70,000 ETB",
-    "Diamond Elite": "60,000 ETB",
-    "Premium Luxury": "45,000 ETB",
-    "Classic Romance": "35,000 ETB"
+    "Velvet Night": "10,000 ETB",
+    "Midnight Bliss": "20,000 ETB",
+    "Royal Desire": "25,000 ETB",
+    "King Amor": "40,000 ETB"
 };
 
 const RegistrationForm = ({ isOpen, onClose, selectedPackage }: RegistrationFormProps) => {
@@ -90,31 +90,65 @@ const RegistrationForm = ({ isOpen, onClose, selectedPackage }: RegistrationForm
     const PaymentInstructions = ({ className = "" }: { className?: string }) => (
         <div className={`space-y-6 ${className}`}>
             <h3 className="text-xl font-bold text-gold mb-6 tracking-widest uppercase">Payment Info</h3>
-            <div className="space-y-6">
-                <div className="space-y-2">
-                    <div className="flex items-center gap-3 text-gold/80">
-                        <Building2 className="w-4 h-4" />
-                        <span className="text-[10px] font-bold uppercase tracking-wider">CBE Bank</span>
+            <div className="space-y-4">
+                <p className="text-[10px] text-champagne/60 uppercase tracking-widest font-bold mb-4 border-b border-gold/10 pb-2">
+                    Account Name: <span className="text-white block mt-1 text-sm">Sowirad Hotel Trading PLC</span>
+                </p>
+
+                <div className="grid grid-cols-1 gap-3">
+                    <div className="bg-white/5 p-3 rounded border border-gold/5 hover:border-gold/20 transition-colors group">
+                        <div className="flex items-center justify-between mb-1">
+                            <div className="flex items-center gap-2 text-gold">
+                                <Phone className="w-3 h-3" />
+                                <span className="text-[10px] font-bold uppercase tracking-wider">Telebirr</span>
+                            </div>
+                        </div>
+                        <p className="text-sm text-white font-mono tracking-wide">0989681490</p>
                     </div>
-                    <p className="text-sm text-champagne/80 font-mono bg-white/5 p-3 rounded border border-gold/5">
-                        Acc: 1000123456789<br />
-                        Name: AMOR Events
-                    </p>
+
+                    <div className="bg-white/5 p-3 rounded border border-gold/5 hover:border-gold/20 transition-colors group">
+                        <div className="flex items-center justify-between mb-1">
+                            <div className="flex items-center gap-2 text-gold">
+                                <Building2 className="w-3 h-3" />
+                                <span className="text-[10px] font-bold uppercase tracking-wider">CBE Bank</span>
+                            </div>
+                        </div>
+                        <p className="text-sm text-white font-mono tracking-wide">1000562397934</p>
+                    </div>
+
+                    <div className="bg-white/5 p-3 rounded border border-gold/5 hover:border-gold/20 transition-colors group">
+                        <div className="flex items-center justify-between mb-1">
+                            <div className="flex items-center gap-2 text-gold">
+                                <Building2 className="w-3 h-3" />
+                                <span className="text-[10px] font-bold uppercase tracking-wider">Dashen Bank</span>
+                            </div>
+                        </div>
+                        <p className="text-sm text-white font-mono tracking-wide">0404450674011</p>
+                    </div>
+
+                    <div className="bg-white/5 p-3 rounded border border-gold/5 hover:border-gold/20 transition-colors group">
+                        <div className="flex items-center justify-between mb-1">
+                            <div className="flex items-center gap-2 text-gold">
+                                <Building2 className="w-3 h-3" />
+                                <span className="text-[10px] font-bold uppercase tracking-wider">BOA</span>
+                            </div>
+                        </div>
+                        <p className="text-sm text-white font-mono tracking-wide">137586223</p>
+                    </div>
+
+                    <div className="bg-white/5 p-3 rounded border border-gold/5 hover:border-gold/20 transition-colors group">
+                        <div className="flex items-center justify-between mb-1">
+                            <div className="flex items-center gap-2 text-gold">
+                                <Building2 className="w-3 h-3" />
+                                <span className="text-[10px] font-bold uppercase tracking-wider">Awash Bank</span>
+                            </div>
+                        </div>
+                        <p className="text-sm text-white font-mono tracking-wide">013041031080400</p>
+                    </div>
                 </div>
 
-                <div className="space-y-2">
-                    <div className="flex items-center gap-3 text-gold/80">
-                        <Phone className="w-4 h-4" />
-                        <span className="text-[10px] font-bold uppercase tracking-wider">Telebirr</span>
-                    </div>
-                    <p className="text-sm text-champagne/80 font-mono bg-white/5 p-3 rounded border border-gold/5">
-                        Merchant ID: 123456<br />
-                        Phone: +251 911 223 344
-                    </p>
-                </div>
-
-                <div className="p-4 border border-gold/10 bg-gold/5 italic text-[10px] text-champagne/60 leading-relaxed">
-                    * Please ensure you follow the payment instructions and upload a clear screenshot of your receipt.
+                <div className="p-4 border border-gold/10 bg-gold/5 italic text-[10px] text-champagne/60 leading-relaxed mt-4">
+                    * Please ensure you transfer to "Sowirad Hotel Trading PLC" and upload a clear screenshot of your receipt.
                 </div>
             </div>
         </div>

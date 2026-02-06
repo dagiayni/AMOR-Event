@@ -3,7 +3,7 @@
 
 import { motion } from "framer-motion";
 
-const Hero = () => {
+const Hero = ({ onReserve }: { onReserve?: () => void }) => {
     return (
         <section className="relative h-screen flex items-center justify-center overflow-hidden">
             {/* Background with Overlay */}
@@ -39,7 +39,7 @@ const Hero = () => {
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             className="gold-button px-10 py-4 text-sm tracking-[0.2em] font-bold uppercase rounded-sm w-full md:w-auto"
-                            onClick={() => document.getElementById('registration')?.scrollIntoView({ behavior: 'smooth' })}
+                            onClick={() => onReserve ? onReserve() : document.getElementById('registration')?.scrollIntoView({ behavior: 'smooth' })}
                         >
                             Reserve Now
                         </motion.button>

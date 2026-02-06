@@ -1,12 +1,18 @@
+"use client";
+
 import Hero from "@/components/Hero";
 import Packages from "@/components/Packages";
 import { MoveRight } from "lucide-react";
+import { useState } from "react";
 
 export default function Home() {
+  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [selectedPkg, setSelectedPkg] = useState("");
+
   return (
     <main className="min-h-screen bg-black">
       {/* Hero Section */}
-      <Hero />
+      <Hero onReserve={() => setIsFormOpen(true)} />
 
       {/* Highlights Section */}
       <section className="bg-charcoal py-16 border-y border-gold/10">
@@ -47,7 +53,12 @@ export default function Home() {
       </section>
 
       {/* Packages Section (RegistrationForm is now a popup inside here) */}
-      <Packages />
+      <Packages
+        isFormOpen={isFormOpen}
+        setIsFormOpen={setIsFormOpen}
+        selectedPkg={selectedPkg}
+        setSelectedPkg={setSelectedPkg}
+      />
 
       {/* Footer */}
       <footer className="py-20 bg-black">
